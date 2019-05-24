@@ -1,0 +1,23 @@
+import matplotlib.pyplot as plt
+from random import randint
+weight = []
+height = []
+fp = open("BMI.csv","w",encoding='utf-8')
+fp.write("{},{},{}\r\n".format("weight","height","bmi_result"))
+bmi_result = []
+def bmi_cal():
+    global weight
+    global height
+    global bmi_result
+    for i in range(1000):
+        weight.append(randint(40,150))
+        height.append(randint(120,200))
+        BMI = weight[i] / ((height[i]**2)/10000)
+        if BMI>30:
+            bmi_result.append("red")
+        elif 25<=BMI<30:
+            bmi_result.append("blue")
+        else:
+            bmi_result.append("green")
+        fp.write("{},{},{}\r\n".format(weight[i],height[i],bmi_result[i]))
+bmi_cal()
